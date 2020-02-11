@@ -36,7 +36,7 @@
                                     <a href="#">
                                         <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                                      exact-active-class="active">
-                                            <i class="fa fa-address-card"> voir</i>
+                                            <i class="fa fa-address-card"> voir </i>
                                         </router-link>
                                     </a>
                                 </td>

@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-/* Vue.mixin({
+Vue.mixin({
     data () {
         return {
             api: {
                 cors: 'https://cors-anywhere.herokuapp.com/',
-                base: 'http://localhost:7770/'
+                base: 'http://localhost:8880/'
             }
         }
     },
@@ -43,4 +43,4 @@ import axios from 'axios'
             return this.getHttp('profiles/by-lastname/' + name)
         }
     }
-}) */
+})
