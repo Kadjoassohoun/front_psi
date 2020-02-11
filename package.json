@@ -1,6 +1,7 @@
 {
   "name": "front_psi",
   "version": "0.1.0",
+  "author": "Elisée Assohoun <assohoun.elisee@gmail.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
