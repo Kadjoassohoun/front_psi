@@ -9,8 +9,18 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.9.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
-    "vue": "^2.6.11"
+    "i": "^0.3.6",
+    "leaflet": "^1.6.0",
+    "lodash": "^4.17.15",
+    "vue": "^2.6.11",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.1.5",
+    "vue-spinner": "^1.0.3",
+    "vue2-leaflet": "^2.5.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
