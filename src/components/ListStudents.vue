@@ -1,12 +1,15 @@
 <template>
-    <div class="hello d-flex flex-nowrap">
+    <div class="d-lg-flex flex-nowrap">
         <MenuBar/>
 
         <div class="col d-flex flex-wrap">
-            <div class="col-12 my-2">
+            <div class="col-12 my-2 text-right">
                 <a :href="api.base + 'profiles/export'"
-                   class="btn btn-success float-right">Exporter</a>
+                   class="btn btn-success">Exporter</a>
             </div>
+
+            <scale-loader :loading="loading" color="#dc3545"></scale-loader>
+
             <div class="card card-inverse col-12">
                 <div class="card-block">
                     <div class="col-12 pt-3">
@@ -14,13 +17,15 @@
 
                         <div class="form-group">
                             <div class="input-group">
-                                <label class="form-control">Recherche par nom : </label>
+                                <label class="form-control"> Recherche par nom : </label>
                                 <input type="text" class="form-control" v-model="name" @change="handleSearchByName">
-                                <div class="input-text p-2" style="cursor: pointer"><i class="fa fa-search"></i></div>
+                                <div class="input-text p-2" style="cursor: pointer">
+                                    <font-awesome-icon icon="search"></font-awesome-icon>
+                                </div>
                             </div>
                         </div>
 
-                        <table class="table">
+                        <table class="table table-responsive">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -36,7 +41,7 @@
                                     <a href="#">
                                         <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                                      exact-active-class="active">
-                                            <i class="fa fa-address-card"> voir</i>
+                                            <font-awesome-icon :icon="['fas', 'address-card']"></font-awesome-icon>
                                         </router-link>
                                     </a>
                                 </td>
@@ -49,8 +54,8 @@
                         </table>
 
                         <nav aria-label="Page navigation" v-if="!(name&&searchByName.length)">
-                            <ul class="pagination">
-                                <li class="page-item" :class="{'active': resources.pageable.pageNumber === page}"
+                            <ul class="pagination flex-wrap justify-content-center">
+                                <li class="page-item my-2" :class="{'active': resources.pageable.pageNumber === page}"
                                     v-for="page in resources.totalPages" :key="page">
                                     <span class="page-link" v-on:click="toPage(page)">{{ page }}</span>
                                 </li>
@@ -63,32 +68,31 @@
     </div>
 </template>
 
+
 <script>
     import MenuBar from './MenuBar'
+    import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 
-    // let _ = require('lodash')
     require('./../api')
 
     export default {
-        name: "Etudiants",
-        components: {MenuBar},
-        watch: {
-            resources: function () {
-                /**
-                 * Apres le contacte de l'API httpResponse est modifie ont l'injecte dans le variable students
-                 */
-            }
-        },
+        name: "ListStudents",
+        components: {MenuBar, ScaleLoader},
         methods: {
-            toPage: function (pageNum = 0) {
-                this.getProfiles(25, pageNum)
+            toPage: async function (pageNum = 0) {
+                this.loading = true
+                this.resources = (await this.getProfiles(25, pageNum)).data
+                this.loading = false
             },
-            handleSearchByName: function () {
-                this.getSearchByName(this.name)
+            handleSearchByName: async function () {
+                this.loading = true
+                this.searchByName = (await this.getSearchByName(this.name)).data
+                this.loading = false
             }
         },
         data () {
             return {
+                loading: true,
                 name: null,
                 resources: {},
                 searchByName: {}
@@ -99,21 +103,19 @@
                 if (this.name && this.searchByName.length) {
                     return this.searchByName
                 }
-
                 return this.resources.content
             }
         },
-        mounted () {
+        async mounted () {
             /*
              * On appelle l'API /profiles
              */
-            this.getProfiles(25)
+            this.resources = (await this.getProfiles(25)).data
+
+            this.loading = false
         }
     }
 </script>
-
-
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -135,4 +137,6 @@
         color: #35495E;
     }
 </style>
+
+
 
