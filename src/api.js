@@ -2,6 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 Vue.mixin({
+
     data () {
         return {
             api: {
