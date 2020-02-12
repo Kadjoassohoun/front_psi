@@ -84,7 +84,7 @@
     require('./../assets/vendor/wordLow')
 
     export default {
-        name: "Home",
+        name: 'hello',
         components: {MenuBar, LMap, LTileLayer, LTooltip, LCircle, ScaleLoader},
         data () {
             return {
@@ -217,6 +217,6 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
     @import "./../assets/home.css";
 </style>

@@ -50,6 +50,8 @@
                                 <td>{{ student.locationName }}</td>
                                 <td>{{ student.headline }}</td>
                             </tr>
+
+
                             </tbody>
                         </table>
 
@@ -68,7 +70,6 @@
     </div>
 </template>
 
-
 <script>
     import MenuBar from './MenuBar'
     import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
@@ -76,7 +77,7 @@
     require('./../api')
 
     export default {
-        name: "ListStudents",
+        name: 'ListStudents',
         components: {MenuBar, ScaleLoader},
         methods: {
             toPage: async function (pageNum = 0) {
@@ -118,7 +119,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
     h1, h2 {
         font-weight: normal;
     }
@@ -137,6 +138,3 @@
         color: #35495E;
     }
 </style>
-
-
-

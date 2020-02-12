@@ -13,11 +13,11 @@
 
 <script>
     export default {
-        name: "Menu"
+        name: 'menu'
     }
 </script>
 
-<style scoped>
+<style>
     .cursor-pointer {
         cursor: pointer
     }
@@ -26,5 +26,3 @@
         border: 0;
     }
 </style>
-
-

@@ -13,11 +13,11 @@
 
 <script>
     export default {
-        name: "MenuBar"
+        name: 'MenuBar'
     }
 </script>
 
-<style scoped>
+<style>
     .cursor-pointer {
         cursor: pointer
     }
@@ -38,5 +38,3 @@
         }
     }
 </style>
-
-

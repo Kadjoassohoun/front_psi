@@ -32,11 +32,10 @@
 </template>
 
 <script>
-
     import MenuBar from './MenuBar'
 
     export default {
-        name: "Etudiant",
+        name: 'etudiant',
         components: {MenuBar},
         data () {
             return {
@@ -44,16 +43,13 @@
                 expertises: {}
             }
         },
-        mounted() {
-
+        mounted () {
             let studentID = this.$route.params.id
             this.getProfile(studentID)
             this.getProfileExpertise(studentID)
         }
     }
 </script>
-
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
@@ -75,4 +71,3 @@
         color: #35495E;
     }
 </style>
-

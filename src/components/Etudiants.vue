@@ -36,7 +36,7 @@
                                     <a href="#">
                                         <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                                      exact-active-class="active">
-                                            <i class="fa fa-address-card"> voir </i>
+                                            <i class="fa fa-address-card"> voir</i>
                                         </router-link>
                                     </a>
                                 </td>
@@ -70,12 +70,12 @@
     require('./../api')
 
     export default {
-        name: "Etudiants",
+        name: 'etudiants',
         components: {MenuBar},
         watch: {
             resources: function () {
                 /**
-                 * Apres le contact de l'API httpResponse est modifié ont l'injecte dans le variable students
+                 * Apres le contacte de l'API httpResponse est modifie ont l'injecte dans le variable students
                  */
             }
         },
@@ -104,7 +104,7 @@
             }
         },
         mounted () {
-            /**
+            /*
              * On appelle l'API /profiles
              */
             this.getProfiles(25)
@@ -112,11 +112,8 @@
     }
 </script>
 
-
-
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
     h1, h2 {
         font-weight: normal;
     }
@@ -135,4 +132,3 @@
         color: #35495E;
     }
 </style>
-
