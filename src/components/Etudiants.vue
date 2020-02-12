@@ -75,7 +75,7 @@
         watch: {
             resources: function () {
                 /**
-                 * Apres le contacte de l'API httpResponse est modifie ont l'injecte dans le variable students
+                 * Apres le contact de l'API httpResponse est modifié ont l'injecte dans le variable students
                  */
             }
         },
@@ -104,7 +104,7 @@
             }
         },
         mounted () {
-            /*
+            /**
              * On appelle l'API /profiles
              */
             this.getProfiles(25)

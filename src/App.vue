@@ -13,7 +13,9 @@
       </div>
     </header>
     <main>
-      <router-view></router-view>
+      <router-view>
+
+      </router-view>
     </main>
   </div>
 </template>

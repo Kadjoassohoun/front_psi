@@ -13,7 +13,6 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@types/leaflet": "^1.5.8",
     "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
     "canvas": "^2.1.0",
     "core-js": "^3.6.4",
     "i": "^0.3.6",
