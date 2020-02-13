@@ -4,7 +4,7 @@
 
     <div class="col d-flex flex-wrap">
       <div class="col-12 my-2">
-        <a :href="api.base + 'profiles/export'"
+        <a :href="api.base + 'expertises/export'" v-if="!(name&&searchByName.length)"
            class="btn btn-success float-right">Exporter</a>
       </div>
       <div class="card card-inverse col-12">
