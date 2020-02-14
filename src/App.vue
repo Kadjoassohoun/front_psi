@@ -20,13 +20,26 @@
 
 <script>
   export default {
-    name: 'app',
+ name: 'app',
+
     data () {
       return {
         appName: 'Suivi étudiants'
       }
+    }}/*,
+    mounted () {
+      axios
+              .get('http://localhost:3000')
+              .then(response => {
+                this.wholeResponse = response.data.Search
+                this.loading = false
+              })
+              .catch(error => {
+                // eslint-disable-next-line no-console
+                console.log(error)
+              })
     }
-  }
+  }*/
 </script>
 
 <style>

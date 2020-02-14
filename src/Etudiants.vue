@@ -104,6 +104,7 @@
       }
     },
     mounted () {
+
       /*
        * On appelle l'API /profiles
        */

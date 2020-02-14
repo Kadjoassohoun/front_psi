@@ -12,8 +12,9 @@ Vue.mixin({
   },
   methods: {
     getHttp: async function (endpoint) {
-      return axios.get(this.api.cors + this.api.base + endpoint)
+      return axios.get( this.api.base + endpoint)
     },
+
     getProfiles: function (size = 500, page = 0) {
       return this.getHttp('profiles?size=' + (size) + '&page=' + (page))
     },
