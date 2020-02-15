@@ -105,7 +105,7 @@
         this.getSearchByName(this.name)
       }
     ,
-    handleSearchByName: function ()
+    handleSearchByFirstName: function ()
     {
       this.getSearchByFirstName(this.fname)
     }
