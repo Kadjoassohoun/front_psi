@@ -57,8 +57,24 @@
                     </router-link>
                   </a>
                 </td>
-                <td>{{ student.firstName }}</td>
-                <td>{{ student.lastName }}</td>
+                <td>
+                  <a href="#">
+                    <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                                 exact-active-class="active">
+                      <font-awesome-text >{{ student.firstName }}</font-awesome-text>
+                    </router-link>
+                  </a>
+                </td>
+                <td>
+                <a href="#">
+                  <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                               exact-active-class="active">
+                    <font-awesome-text >{{ student.lastName}}</font-awesome-text>
+                  </router-link>
+                </a>
+                </td>
+
+
                 <td>{{ student.locationName }}</td>
                 <td>{{ student.headline }}</td>
               </tr>
@@ -136,7 +152,6 @@
         {
           return this.searchByFirstName
         }
-
         return this.resources.content
 
 

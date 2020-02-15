@@ -23,7 +23,7 @@
             <div class="form-group">
               <div class="input-group">
                 <label class="form-control">Recherche par prénom : </label>
-                <input type="text" class="form-control" v-model="fname" @change="handleSearchByName">
+                <input type="text" class="form-control" v-model="fname" @change="handleSearchByFirstName">
                 <div class="input-text p-2" style="cursor: pointer"><i class="fa fa-search"></i></div>
               </div>
             </div>
@@ -64,7 +64,7 @@
                 </li>
               </ul>
             </nav>
-          </div>
+
               <nav aria-label="Page navigation" v-if="!(fname&&searchByFirstName.length)">
               <ul class="pagination">
                 <li class="page-item" :class="{'active': resources.pageable.pageNumber === page}"
@@ -73,6 +73,7 @@
                 </li>
               </ul>
             </nav>
+          </div>
           </div>
         </div>
       </div>
@@ -88,6 +89,7 @@
 
   export default {
     name: 'etudiants',
+    fname:'etudiants',
     components: {MenuBar},
     watch: {
       resources: function () {
@@ -127,7 +129,7 @@
         {
           return this.searchByName
         }
-       if (this.name && this.searchByFirstName.length)
+       if (this.fname && this.searchByFirstName.length)
         {
           return this.searchByFirstName
         }

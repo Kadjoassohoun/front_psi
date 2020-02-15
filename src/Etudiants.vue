@@ -8,7 +8,7 @@
            class="btn btn-success float-right">Exporter</a>
       </div>
       <div class="col-12 my-2">
-        <a :href="api.base + 'expertises/export'" v-if="!(name&&searchByFirstName.length)"
+        <a :href="api.base + 'expertises/export'" v-if="!(fname&&searchByFirstName.length)"
            class="btn btn-success float-right">Exporter</a>
       </div>
       <div class="card card-inverse col-12">
@@ -68,7 +68,7 @@
                 </li>
               </ul>
             </nav>
-            <nav aria-label="Page navigation" v-if="!(fname&&searchByFirstName.length)">
+            <nav aria-label="Page navigation" v-if="!(name&&searchByFirstName.length)">
               <ul class="pagination">
                 <li class="page-item" :class="{'active': resources.pageable.pageNumber === page}"
                     v-for="page in resources.totalPages" :key="page">
@@ -91,7 +91,6 @@
 
   export default {
     name: 'etudiants',
-    fname:'etudiants',
     components: {MenuBar},
     watch: {
       resources: function () {
