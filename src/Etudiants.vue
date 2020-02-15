@@ -7,6 +7,10 @@
         <a :href="api.base + 'expertises/export'" v-if="!(name&&searchByName.length)"
            class="btn btn-success float-right">Exporter</a>
       </div>
+      <div class="col-12 my-2">
+        <a :href="api.base + 'expertises/export'" v-if="!(name&&searchByFirstName.length)"
+           class="btn btn-success float-right">Exporter</a>
+      </div>
       <div class="card card-inverse col-12">
         <div class="card-block">
           <div class="col-12 pt-3">
@@ -20,6 +24,14 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <div class="input-group">
+                <label class="form-control">Recherche par prénom : </label>
+                <input type="text" class="form-control" v-model="fname" @change="handleSearchByFirstName">
+                <div class="input-text p-2" style="cursor: pointer"><i class="fa fa-search"></i></div>
+              </div>
+
+            </div>
             <table class="table">
               <thead>
               <tr>
@@ -48,7 +60,15 @@
               </tbody>
             </table>
 
-            <nav aria-label="Page navigation" v-if="!(name&&searchByName.length)">
+         <nav aria-label="Page navigation" v-if="!(name&&searchByName.length)">
+              <ul class="pagination">
+                <li class="page-item" :class="{'active': resources.pageable.pageNumber === page}"
+                    v-for="page in resources.totalPages" :key="page">
+                  <span class="page-link" v-on:click="toPage(page)">{{ page }}</span>
+                </li>
+              </ul>
+            </nav>
+            <nav aria-label="Page navigation" v-if="!(fname&&searchByFirstName.length)">
               <ul class="pagination">
                 <li class="page-item" :class="{'active': resources.pageable.pageNumber === page}"
                     v-for="page in resources.totalPages" :key="page">
@@ -71,6 +91,7 @@
 
   export default {
     name: 'etudiants',
+    fname:'etudiants',
     components: {MenuBar},
     watch: {
       resources: function () {
@@ -85,23 +106,32 @@
       },
       handleSearchByName: function () {
         this.getSearchByName(this.name)
+      },
+      handleSearchByFirstName: function () {
+        this.getSearchByFirstName(this.fname)
       }
     },
     data () {
       return {
         name: null,
+        fname: null,
         resources: {},
-        searchByName: {}
+        searchByName: {},
+        searchByFirstName: {},
       }
     },
     computed: {
       students: function () {
         if (this.name && this.searchByName.length) {
           return this.searchByName
+
         }
 
+        if (this.name && this.searchByFirstName.length) {
+          return this.searchByFirstName
+        }
         return this.resources.content
-      }
+    }
     },
     mounted () {
 

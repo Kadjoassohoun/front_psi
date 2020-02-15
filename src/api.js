@@ -41,6 +41,9 @@ Vue.mixin({
     },
     getSearchByName: function (name) {
       return this.getHttp('profiles/by-lastname/' + name)
+    },
+    getSearchByFirstName: function (fname) {
+      return this.getHttp('profiles/by-firstname/' + fname)
     }
   }
 })

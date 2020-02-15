@@ -17,9 +17,18 @@
             <h4>Liste des étudiants</h4>
 
             <div class="form-group">
+
               <div class="input-group">
                 <label class="form-control">Recherche par nom : </label>
                 <input type="text" class="form-control" v-model="name" @change="handleSearchByName">
+                <div class="input-text p-2" style="cursor: pointer">
+                  <font-awesome-icon icon="search"></font-awesome-icon>
+                </div>
+              </div></div>
+              <div class="form-group">
+              <div class="input-group">
+                <label class="form-control">Recherche par prénom : </label>
+                <input type="text" class="form-control" v-model="fname" @change="handleSearchByFirstName">
                 <div class="input-text p-2" style="cursor: pointer">
                   <font-awesome-icon icon="search"></font-awesome-icon>
                 </div>
@@ -57,6 +66,15 @@
             </table>
 
             <nav aria-label="Page navigation" v-if="!(name&&searchByName.length)">
+
+              <ul class="pagination flex-wrap justify-content-center">
+                <li class="page-item my-2" :class="{'active': resources.pageable.pageNumber === page}"
+                    v-for="page in resources.totalPages" :key="page">
+                  <span class="page-link" v-on:click="toPage(page)">{{ page }}</span>
+                </li>
+              </ul>
+            </nav>
+            <nav aria-label="Page navigation" v-if="!(fname&&searchByFirstName.length)">
               <ul class="pagination flex-wrap justify-content-center">
                 <li class="page-item my-2" :class="{'active': resources.pageable.pageNumber === page}"
                     v-for="page in resources.totalPages" :key="page">
@@ -90,25 +108,41 @@
         this.loading = true
         this.searchByName = (await this.getSearchByName(this.name)).data
         this.loading = false
-      }
+      },
+      handleSearchByFirstName: async function () {
+        this.loading = true
+        this.searchByFirstName = (await this.getSearchByFirstName(this.fname)).data
+        this.loading = false
+      },
     },
     data () {
       return {
         loading: true,
         name: null,
+        fname: null,
         resources: {},
-        searchByName: {}
+        searchByName: {},
+        searchByFirstName: {},
       }
     },
     computed: {
-      students: function () {
-        if (this.name && this.searchByName.length) {
+      students: function ()
+      {
+        if (this.name && this.searchByName.length)
+        {
           return this.searchByName
+        }
+        if (this.fname && this.searchByFirstName.length)
+        {
+          return this.searchByFirstName
         }
 
         return this.resources.content
+
+
       }
-    },
+    }
+    ,
     async mounted () {
       /*
        * On appelle l'API /profiles
