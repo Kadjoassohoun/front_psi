@@ -26,31 +26,31 @@
         </div>
       </div>
       <div class="col-12 pl-0 mt-4 chart-block" id="studentMap">
-        <div class="card">
-          <div class="card-block">
-            <h4 class="card-title text-left px-3 py-4">Localisations (sur un total {{ count.students }} etudiants)
-              <i v-on:click="expandFrame('studentMap')" ref="studentMap" class="fa fa-expand float-right"></i></h4>
+         <div class="card">
+           <div class="card-block">
+             <h4 class="card-title text-left px-3 py-4">Localisations (sur un total {{ count.students }} etudiants)
+               <i v-on:click="expandFrame('studentMap')" ref="studentMap" class="fa fa-expand float-right"></i></h4>
 
-            <l-map :zoom=3 :center="[47.413220, -1.219482]" :maxZoom="7"
-                   style="position: relative;padding: 0;width: 100%;height: 600px;">
+             <l-map :zoom=3 :center="[47.413220, -1.219482]" :maxZoom="7"
+                    style="position: relative;padding: 0;width: 100%;height: 600px;">
 
-              <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
-              <l-circle v-for="point in points" :key="point.coo.lat" :lat-lng="point.coo" :radius="circle.radius"
-                        color="green">
-                <l-tooltip>{{ point.text }}</l-tooltip>
-              </l-circle>
+               <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
+               <l-circle v-for="point in points" :key="point.coo.lat" :lat-lng="point.coo" :radius="circle.radius"
+                         color="green">
+                 <l-tooltip>{{ point.text }}</l-tooltip>
+               </l-circle>
 
-              <!--<l-marker :lat-lng="[47.313220, -1.319482]" pane="overlayPane">-->
-              <!--<l-tooltip>France 20 etudiants</l-tooltip>-->
-              <!--</l-marker>-->
-            </l-map>
-            <div id="chart5" style="height: 500px;display: none;"></div>
-          </div>
-        </div>
-      </div>
+               <l-marker :lat-lng="[47.313220, -1.319482]" pane="overlayPane">
+              <l-tooltip>France 20 etudiants</l-tooltip>
+              /l-marker>-->
+      <</l-map>
+       <div id="chart5" style="height: 500px;display: none;"></div>
+     </div>
+   </div>
+ </div>
 
-    </div>
-  </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -68,7 +68,7 @@
 
   export default {
     name: 'hello',
-    components: {MenuBar, LMap, LTileLayer, LTooltip, LCircle},
+    components: {MenuBar, LTileLayer, LTooltip, LCircle},
     watch: {
       resources: function () {
         this.calculate()
@@ -117,8 +117,10 @@
         this.charts.chart1.invalidateSize()
       },
       calculate: function () {
-        this.calculated.industryChart = _.chain(this.resources.content).groupBy('industryName').map(function (el, industry) {
-          return {
+
+        this.calculated.industryChart = _.chain(this.resources.content).groupBy('industryName').map(function (el, industry)
+        {
+          return{
             'category': industry,
             'value': _.size(el)
           }

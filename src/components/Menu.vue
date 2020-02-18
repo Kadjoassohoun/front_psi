@@ -7,6 +7,9 @@
       <router-link to="/etudiants" tag="li" class="list-group-item cursor-pointer" exact-active-class="active">
         <i class="fa fa-users"></i>
       </router-link>
+      <router-link to="/entreprises" tag="li" class="list-group-item cursor-pointer" exact-active-class="active">
+        <i class="fa fa-users"></i>
+      </router-link>
     </ul>
   </div>
 </template>

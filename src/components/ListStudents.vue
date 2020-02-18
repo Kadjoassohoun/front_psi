@@ -42,11 +42,10 @@
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Localisation</th>
-
-
                 <th>Poste actuel</th>
               </tr>
               </thead>
+
               <tbody>
               <tr v-for="student in students" :key="student.profileId">
                 <td>
@@ -148,10 +147,7 @@
         {
           return this.searchByName
         }
-        if (this.fname && this.searchByFirstName.length)
-        {
-          return this.searchByFirstName
-        }
+
         return this.resources.content
 
 

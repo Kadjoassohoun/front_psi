@@ -2,11 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import ListStudents from '@/components/ListStudents'
+import ListEntreprises from '@/components/ListEntreprises'
 import ViewStudent from '@/components/ViewStudent'
+
+
 
 Vue.use(Router)
 
-export default new Router({
+
+ const router = new Router({
   routes: [
     {
       path: '/',
@@ -18,6 +22,12 @@ export default new Router({
       name: 'ListStudents',
       component: ListStudents
     },
+
+    {
+      path: '/entreprises',
+      name: 'ListEntreprises',
+      component: ListEntreprises
+    },
     {
       path: '/etudiant/:id',
       name: 'ViewStudent',
@@ -25,3 +35,4 @@ export default new Router({
     }
   ]
 })
+export default router;
