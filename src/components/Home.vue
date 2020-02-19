@@ -84,11 +84,7 @@
   require('./../assets/vendor/wordLow')
 
   export default {
-<<<<<<< HEAD
     name: 'Home',
-=======
-    name: 'home',
->>>>>>> top-entreprises
     components: {MenuBar, LMap, LTileLayer, LTooltip, LCircle, ScaleLoader},
     data () {
       return {

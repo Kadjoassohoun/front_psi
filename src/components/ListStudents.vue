@@ -104,14 +104,9 @@
       students: function () {
         if (this.name && this.searchByName.length) {
           return this.searchByName
-<<<<<<< HEAD
-        } else if (this.name && this.searchByFirstName.length){
+        } else if (this.name && this.searchByFirstName.length) {
           return this.searchByFirstName
         }
-=======
-        }
-
->>>>>>> top-entreprises
         return this.resources.content
       }
     },

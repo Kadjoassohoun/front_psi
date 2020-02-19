@@ -80,7 +80,6 @@
 
     export default {
         name: 'Entreprises',
-
         components: {MenuBar},
         watch: {
             resources: function () {
@@ -93,44 +92,33 @@
             toPage: function (pageNum = 0) {
                 this.getProfiles(25, pageNum)
             },
-            handleSearchByNameCompagny: function ()
-            {
+            handleSearchByNameCompagny: function () {
                 this.getSearchByNameCompagny(this.name)
-            }
-            ,
-
-
-
-
+            },
         data () {
-            return {
-                name: null,
-                fname: null,
-                resources: {},
-                searchByNameCompagny: {},
-
+                return {
+                    name: null,
+                    fname: null,
+                    resources: {},
+                    searchByNameCompagny: {}
+                }
             }
         },
-
-        computed:
-            {
-                students: function () {
-                    if (this.name && this.searchByNameCompagny.length)
-                    {
-                        return this.searchByNameCompagny
-                    }
-
-                    return this.resources.content
-                },
-
-
-                mounted () {
+        computed: {
+            students: function () {
+                if (this.name && this.searchByNameCompagny.length) {
+                    return this.searchByNameCompagny
+                }
+                return this.resources.content
+            },
+            mounted () {
             /*
              * On appelle l'API /profiles
              */
             this.getProfiles(25)
-        }
-    },}
+            }
+        },
+    }
 </script>
 
 <style scoped>
