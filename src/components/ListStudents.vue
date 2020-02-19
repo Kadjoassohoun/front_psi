@@ -35,6 +35,7 @@
                 <th>Poste actuel</th>
               </tr>
               </thead>
+
               <tbody>
               <tr v-for="student in students" :key="student.profileId">
                 <td>
@@ -103,9 +104,14 @@
       students: function () {
         if (this.name && this.searchByName.length) {
           return this.searchByName
+<<<<<<< HEAD
         } else if (this.name && this.searchByFirstName.length){
           return this.searchByFirstName
         }
+=======
+        }
+
+>>>>>>> top-entreprises
         return this.resources.content
       }
     },

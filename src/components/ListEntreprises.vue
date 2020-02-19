@@ -1,0 +1,144 @@
+<template>
+    <div class="d-lg-flex flex-nowrap">
+        <MenuBar/>
+
+        <div class="col d-flex flex-wrap">
+
+            <div class="col-12 my-2 text-right">
+                <a :href="api.base + 'profiles/export'"
+                   class="btn btn-success">Exporter</a>
+            </div>
+
+            <scale-loader :loading="loading" color="#dc3545"></scale-loader>
+
+            <div class="card card-inverse col-12">
+                <div class="card-block">
+                    <div class="col-12 pt-3">
+                        <h4>Liste des entreprises</h4>
+
+                        <h5 class="card-title text-left px-3 py-4">
+                            Top Secteurs d'Activités
+                        </h5>
+
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+
+                                <th>Entreprise</th>
+                                <th>Localisation</th>
+                                <th>Nombre de recrutement</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="student in students " :key="student.profileId">
+                                <td>{{ student.industryName }} </td>
+                                <td>{{ student.locationName }} </td></tr>>
+                            <tr v-for="expertise in expertises" :key="expertise.skillId">
+                                <td>{{ expertise.skillId}} </td>
+
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+                        <nav aria-label="Page navigation" v-if="!(name&&searchByNameCompagny.length)">
+
+                            <ul class="pagination flex-wrap justify-content-center">
+                                <li class="page-item my-2" :class="{'active': resources.pageable.pageNumber === page}"
+                                    v-for="page in resources.totalPages" :key="page">
+                                    <span class="page-link" v-on:click="toPage(page)">{{ page }}</span>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import MenuBar from './MenuBar'
+    import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
+    import _ from "lodash";
+
+
+    require('./../api')
+
+    export default {
+        name: 'ListEntreprises',
+        components: {MenuBar, ScaleLoader},
+
+
+        data () {
+            return {
+                cpt: ['0','1'],
+                loading: true,
+                name: null,
+
+                resources: {},
+                searchByNameCompagny: {},
+
+                }
+        },
+
+        methods: {
+            toPage: async function (pageNum = 0) {
+                this.loading = true
+                this.resources = (await this.getProfiles(25, pageNum)).data
+                this.loading = false
+            },
+            handleSearchByNameCompagny: async function () {
+                this.loading = true
+                this.searchByNameCompagny = (await this.getSearchByNameCompagny(this.name)).data
+                this.loading = false
+            },
+        },
+        computed: {
+            students: function ()
+            {
+                if (this.name && this.searchByNameCompagny.length)
+                {
+                    return this.searchByNameCompagny
+                }
+
+                return  _.orderBy(this.resources.content,'industryName')
+
+
+            }
+        }
+        ,
+        async mounted () {
+            /*
+             * On appelle l'API /profiles
+             */
+
+            this.resources = (await this.getProfiles(2000)).data
+
+            this.loading = false
+
+        },}
+
+</script>
+
+<style scoped>
+    h1, h2 {
+        font-weight: normal;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    a {
+        color: #35495E;
+    }
+</style>

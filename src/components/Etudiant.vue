@@ -20,8 +20,13 @@
             </thead>
             <tbody>
             <tr v-for="expertise in expertises" :key="expertise.skillId">
+<<<<<<< HEAD
               <td>{{ expertise.title }}</td>
               <td>{{ expertise.companyName }}</td>
+=======
+              <td>{{ expertise.name }}</td>
+              <td>{{ student.location }}</td>
+>>>>>>> top-entreprises
               <td>{{ expertise.startYear}} <span v-if="expertise.endYear">- {{ expertise.endYear }}</span></td>
             </tr>
             </tbody>

@@ -7,10 +7,7 @@
         <a :href="api.base + 'expertises/export'" v-if="!(name&&searchByName.length)"
            class="btn btn-success float-right">Exporter</a>
       </div>
-      <div class="col-12 my-2">
-        <a :href="api.base + 'expertises/export'" v-if="!(fname&&searchByFirstName.length)"
-           class="btn btn-success float-right">Exporter</a>
-      </div>
+
       <div class="card card-inverse col-12">
         <div class="card-block">
           <div class="col-12 pt-3">
@@ -105,10 +102,7 @@
       },
       handleSearchByName: function () {
         this.getSearchByName(this.name)
-      },
-      handleSearchByFirstName: function () {
-        this.getSearchByFirstName(this.fname)
-      }
+
     },
     data () {
       return {
@@ -116,7 +110,7 @@
         fname: null,
         resources: {},
         searchByName: {},
-        searchByFirstName: {},
+
       }
     },
     computed: {
