@@ -84,7 +84,7 @@
   require('./../assets/vendor/wordLow')
 
   export default {
-    name: 'hello',
+    name: 'Home',
     components: {MenuBar, LMap, LTileLayer, LTooltip, LCircle, ScaleLoader},
     data () {
       return {
@@ -187,6 +187,7 @@
       }
     },
     async mounted () {
+
       /**
        * ---------------------------------------
        * This charts was created using amCharts 4.

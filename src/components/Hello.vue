@@ -67,7 +67,7 @@
   require('./../assets/vendor/wordLow')
 
   export default {
-    name: 'hello',
+    name: 'Hello',
     components: {MenuBar, LMap, LTileLayer, LTooltip, LCircle},
     watch: {
       resources: function () {

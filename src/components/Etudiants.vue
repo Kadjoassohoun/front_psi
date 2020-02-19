@@ -14,18 +14,11 @@
 
             <div class="form-group">
               <div class="input-group">
-                <label class="form-control">Recherche par nom : </label>
+                <label class="form-control">Recherche par nom: </label>
                 <input type="text" class="form-control" v-model="name" @change="handleSearchByName">
                 <div class="input-text p-2" style="cursor: pointer"><i class="fa fa-search"></i></div>
               </div>
             </div>
-
-            <div class="form-group">
-              <div class="input-group">
-                <label class="form-control">Recherche par prénom : </label>
-                <input type="text" class="form-control" v-model="fname" @change="handleSearchByFirstName">
-                <div class="input-text p-2" style="cursor: pointer"><i class="fa fa-search"></i></div>
-              </div>
             </div>
 
             <table class="table">
@@ -64,32 +57,21 @@
                 </li>
               </ul>
             </nav>
-
-              <nav aria-label="Page navigation" v-if="!(fname&&searchByFirstName.length)">
-              <ul class="pagination">
-                <li class="page-item" :class="{'active': resources.pageable.pageNumber === page}"
-                    v-for="page in resources.totalPages" :key="page">
-                  <span class="page-link" v-on:click="toPage(page)">{{ page }}</span>
-                </li>
-              </ul>
-            </nav>
-          </div>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
 </template>
 
 <script>
   import MenuBar from './MenuBar'
 
-  // let _ = require('lodash')
+  //let _ = require('lodash')
   require('./../api')
 
   export default {
     name: 'etudiants',
-    fname:'etudiants',
     components: {MenuBar},
     watch: {
       resources: function () {
@@ -102,41 +84,25 @@
       toPage: function (pageNum = 0) {
         this.getProfiles(25, pageNum)
       },
-      handleSearchByName: function ()
-      {
+      handleSearchByName: function () {
         this.getSearchByName(this.name)
       }
-    ,
-    handleSearchByFirstName: function ()
-    {
-      this.getSearchByFirstName(this.fname)
-    }
     },
     data () {
       return {
         name: null,
-        fname: null,
         resources: {},
-        searchByName: {},
-        searchByFirstName: {},
+        searchByName: {}
       }
     },
-
-    computed:
-    {
+    computed: {
       students: function () {
-        if (this.name && this.searchByName.length)
-        {
+        if (this.name && this.searchByName.length) {
           return this.searchByName
         }
-       if (this.fname && this.searchByFirstName.length)
-        {
-          return this.searchByFirstName
-        }
         return this.resources.content
-
-
-      }},
+      }
+    },
     mounted () {
       /*
        * On appelle l'API /profiles

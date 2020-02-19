@@ -1,4 +1,3 @@
-
 <template>
   <div class="d-lg-flex flex-nowrap">
     <MenuBar/>
@@ -17,18 +16,9 @@
             <h4>Liste des étudiants</h4>
 
             <div class="form-group">
-
               <div class="input-group">
-                <label class="form-control">Recherche par nom : </label>
+                <label class="form-control"> Recherche par nom : </label>
                 <input type="text" class="form-control" v-model="name" @change="handleSearchByName">
-                <div class="input-text p-2" style="cursor: pointer">
-                  <font-awesome-icon icon="search"></font-awesome-icon>
-                </div>
-              </div></div>
-              <div class="form-group">
-              <div class="input-group">
-                <label class="form-control">Recherche par prénom : </label>
-                <input type="text" class="form-control" v-model="fname" @change="handleSearchByFirstName">
                 <div class="input-text p-2" style="cursor: pointer">
                   <font-awesome-icon icon="search"></font-awesome-icon>
                 </div>
@@ -42,8 +32,6 @@
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Localisation</th>
-
-
                 <th>Poste actuel</th>
               </tr>
               </thead>
@@ -57,40 +45,14 @@
                     </router-link>
                   </a>
                 </td>
-                <td>
-                  <a href="#">
-                    <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                                 exact-active-class="active">
-                      <font-awesome-text >{{ student.firstName }}</font-awesome-text>
-                    </router-link>
-                  </a>
-                </td>
-                <td>
-                <a href="#">
-                  <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                               exact-active-class="active">
-                    <font-awesome-text >{{ student.lastName}}</font-awesome-text>
-                  </router-link>
-                </a>
-                </td>
-
-
+                <td>{{ student.firstName }}</td>
+                <td>{{ student.lastName }}</td>
                 <td>{{ student.locationName }}</td>
                 <td>{{ student.headline }}</td>
               </tr>
               </tbody>
             </table>
-
-            <nav aria-label="Page navigation" v-if="!(name&&searchByName.length)">
-
-              <ul class="pagination flex-wrap justify-content-center">
-                <li class="page-item my-2" :class="{'active': resources.pageable.pageNumber === page}"
-                    v-for="page in resources.totalPages" :key="page">
-                  <span class="page-link" v-on:click="toPage(page)">{{ page }}</span>
-                </li>
-              </ul>
-            </nav>
-            <nav aria-label="Page navigation" v-if="!(fname&&searchByFirstName.length)">
+            <nav aria-label="Page navigation" v-if="!(name&&searchByName.length || searchByFirstName)">
               <ul class="pagination flex-wrap justify-content-center">
                 <li class="page-item my-2" :class="{'active': resources.pageable.pageNumber === page}"
                     v-for="page in resources.totalPages" :key="page">
@@ -114,6 +76,16 @@
   export default {
     name: 'ListStudents',
     components: {MenuBar, ScaleLoader},
+
+    data () {
+      return {
+        loading: true,
+        name: null,
+        resources: {},
+        searchByName: {},
+        searchByFirstName: {}
+      }
+    },
     methods: {
       toPage: async function (pageNum = 0) {
         this.loading = true
@@ -123,47 +95,25 @@
       handleSearchByName: async function () {
         this.loading = true
         this.searchByName = (await this.getSearchByName(this.name)).data
+        this.searchByFirstName = (await this.getSearchByFirstName(this.name)).data
         this.loading = false
-      },
-      handleSearchByFirstName: async function () {
-        this.loading = true
-        this.searchByFirstName = (await this.getSearchByFirstName(this.fname)).data
-        this.loading = false
-      },
-    },
-    data () {
-      return {
-        loading: true,
-        name: null,
-        fname: null,
-        resources: {},
-        searchByName: {},
-        searchByFirstName: {},
       }
     },
     computed: {
-      students: function ()
-      {
-        if (this.name && this.searchByName.length)
-        {
+      students: function () {
+        if (this.name && this.searchByName.length) {
           return this.searchByName
-        }
-        if (this.fname && this.searchByFirstName.length)
-        {
+        } else if (this.name && this.searchByFirstName.length){
           return this.searchByFirstName
         }
         return this.resources.content
-
-
       }
-    }
-    ,
+    },
     async mounted () {
-      /*
+      /**
        * On appelle l'API /profiles
        */
       this.resources = (await this.getProfiles(25)).data
-
       this.loading = false
     }
   }

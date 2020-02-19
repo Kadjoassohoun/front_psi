@@ -31,7 +31,7 @@
             <tr v-for="expertise in expertises" :key="expertise.skillId">
               <td>{{ expertise.title }}</td>
               <td>{{ expertise.companyName }}</td>
-              <td>{{ expertise.startYear}} <span v-if="expertise.endYear">- {{ expertise.endYear }}</span></td>
+              <td>{{ expertise.startYear}} <span v-if="expertise.endYear"> - {{ expertise.endYear }}</span></td>
             </tr>
             </tbody>
           </table>
@@ -59,7 +59,6 @@
       let studentID = this.$route.params.id
       this.student = (await this.getProfile(studentID)).data
       this.expertises = (await this.getProfileExpertise(studentID)).data
-
       this.loading = false
     }
   }
