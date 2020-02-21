@@ -1,37 +1,34 @@
 <template>
-    <div class="hello d-flex flex-nowrap">
+    <div class="d-lg-flex flex-nowrap">
         <MenuBar/>
 
         <div class="col d-flex flex-wrap">
             <div class="card card-inverse col-12">
                 <div class="card-block pt-4">
-                    <i class="fa fa-user fa-3x mb-2"></i>
+                    <scale-loader :loading="loading" color="#dc3545" class="float-left"></scale-loader>
 
+                    <font-awesome-icon icon="user" size="3x" class="mb-2"></font-awesome-icon>
 
-                    <tr v-for="student in Students" :key="student.profileId">
-                        {{ student.industryName }} </tr>
-                        <h6><i class="fa fa-briefcase"></i> {{student.locationName}} </h6>
+                    <h6>
+                        <font-awesome-icon icon="briefcase"></font-awesome-icon>
+                        {{ student.headline }} à <i>{{ student.industryName }}</i>
+                    </h6>
 
-
-                    <tr v-for="expertise in expertises" :key="expertise.skillId">
-                        <td>{{ expertise.skillId}} </td>
-
-                    </tr>
 
                     <table class="table mt-3">
                         <thead>
                         <tr>
+                            <th>prenom</th>
+                            <th>entreprise</th>
 
-                            <th>Entreprise</th>
-                            <th>Localisation</th>
-                            <th>Nombre de recrutement</th>
                         </tr>
                         </thead>
                         <tbody>
+
                         <tr v-for="student in students" :key="student.industryName">
-                            <td>{{ student.industryName}}</td>
-                            <td>{{ student.location}}</td>
-                            <td></td>
+                            <td>{{ student.firstName }}</td>
+                            <td>{{ student.industryName }}</td>
+
                         </tr>
                         </tbody>
                     </table>
@@ -42,21 +39,31 @@
 </template>
 
 <script>
-    import MenuBar from './MenuBar'
+    import MenuBar from "./MenuBar";
+    import ScaleLoader from "vue-spinner/src/ScaleLoader";
+
 
     export default {
-        name: 'entreprises',
-        components: {MenuBar},
+        name: "ViewEntreprise",
+
+        components: {MenuBar, ScaleLoader},
         data () {
             return {
+                loading: true,
                 student: {},
                 expertises: {}
             }
         },
-        mounted () {
-            let studentID = this.$route.params.id
-            this.getProfile(studentID)
-            this.getProfileExpertise(studentID)
+        computed: {
+            students: function ()
+            {
+                return this.resources.content
+            }
+        },
+        async mounted () {
+            this.resources = (await this.getProfiles(2000)).data
+
+            this.loading = false
         }
     }
 </script>

@@ -16,9 +16,6 @@
                     <div class="col-12 pt-3">
                         <h4>Liste des entreprises</h4>
 
-                        <h5 class="card-title text-left px-3 py-4">
-                            Top Secteurs d'Activités
-                        </h5>
 
                         <table class="table table-responsive">
                             <thead>
@@ -26,17 +23,19 @@
 
                                 <th>Entreprise</th>
                                 <th>Localisation</th>
-                                <th>Nombre de recrutement</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="student in students " :key="student.profileId">
-                                <td>{{ student.industryName }} </td>
-                                <td>{{ student.locationName }} </td></tr>>
-                            <tr v-for="expertise in expertises" :key="expertise.skillId">
-                                <td>{{ expertise.skillId}} </td>
 
+                            <tr v-for="student in students " :key="student.profileId">
+                                <td> <router-link :to="'/entreprise/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                                                  exact-active-class="active">
+                                    {{ student.industryName }}
+                                </router-link>
+                                </td>
+                                <td>{{ student.locationName }} </td>
                             </tr>
+
 
 
                             </tbody>
@@ -104,7 +103,7 @@
                     return this.searchByNameCompagny
                 }
 
-                return  _.orderBy(this.resources.content,'industryName')
+                return _.uniqBy(this.resources.content,'industryName')
 
 
             }

@@ -14,12 +14,7 @@
                         <h4>Liste des étudiants</h4>
                         </div>
 
-                        <h5 class="card-title text-left px-3 py-4">
-                            Top Secteurs d'Activités
-                            <small>(sur un total de {{ }})</small>
-                            <font-awesome-icon icon="expand" v-on:click="expandFrame('sectors')"
-                                               ref="secteurs" class="float-right"></font-awesome-icon>
-                        </h5>
+
 
                     </div>
                         <table class="table">
@@ -28,7 +23,6 @@
                                 <th>#</th>
                                 <th>Entreprise</th>
                                 <th>Localisation</th>
-                                <th>Nombre de recrutement</th>
 
                             </tr>
                             </thead>
@@ -99,7 +93,7 @@
                     return this.searchByNameCompagny
 
                 }
-                return  _.orderBy(this.resources.content,'industryName')
+                return  _.uniqBy(this.resources.content,'industryName')
 
 
             },

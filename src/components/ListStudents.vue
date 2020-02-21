@@ -46,8 +46,14 @@
                     </router-link>
                   </a>
                 </td>
-                <td>{{ student.firstName }}</td>
-                <td>{{ student.lastName }}</td>
+                <td>
+                  <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                               exact-active-class="active">{{ student.firstName }}</router-link></td>
+
+                <td>       <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                                        exact-active-class="active">
+                  {{ student.lastName }}</router-link></td>
+
                 <td>{{ student.locationName }}</td>
                 <td>{{ student.headline }}</td>
               </tr>

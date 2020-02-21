@@ -9,30 +9,33 @@
 
                     <font-awesome-icon icon="user" size="3x" class="mb-2"></font-awesome-icon>
 
-                    <h5>{{ student.lastName }} {{ student.firstName }}</h5>
                     <h6>
-                        <font-awesome-icon icon="briefcase"></font-awesome-icon>
-                        {{ student.headline }} à <i>{{ student.industryName }}</i>
+
+                        <var id="var1"><i>{{student.industryName }}</i></var>=<var>b</var>
                     </h6>
-                    <h6>
-                        <font-awesome-icon icon="location-arrow"></font-awesome-icon>
-                        {{ student.locationName }}
-                    </h6>
+
 
                     <table class="table mt-3">
                         <thead>
                         <tr>
-                            <th>Poste</th>
-                            <th>Entreprise</th>
-                            <th>Nombre de recrutement</th>
+                            <th>Nom Prenom</th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="student in orderedStudents" :key="student.profileId">
-                            {{ student.industryName }} </tr>
-                            <td>{{ student.location }}</td>
 
-                            <td>{{ }} </td>
+
+                        <tr v-for="student in students" :key="student.industryName">
+
+                            <div v-if="student.industryName =='Banking'">
+
+                                <td>{{ student.firstName }}</td>
+
+
+                                <td>{{ student.lastName }}</td>
+                            </div>
+
+                        </tr>
 
                         </tbody>
                     </table>
@@ -43,13 +46,56 @@
 </template>
 
 <script>
-    import _ from "lodash";
+
+
+    import MenuBar from "./MenuBar";
+    import ScaleLoader from "vue-spinner/src/ScaleLoader";
+
 
     export default {
-        name: "ViewEntreprise"
+        name: "ViewEntreprise",
+        created(){
+            this.vars = {
+                svg:null
+            }
+        },
+
+    components: {MenuBar, ScaleLoader},
+    data () {
+        return {
+            loading: true,
+            student: {},
+            expertises: {}
+        }
+    },
+        computed: {
+            students: function ()
+            {
+
+                    return this.resources.content
+
+
+
+
+            }
+        },
+    async mounted () {
+
+
+        let studentID = this.$route.params.id
+        this.student = (await this.getProfile(studentID)).data
+
+
+        this.resources = (await this.getProfiles(2000)).data
+
+        this.loading = false
+
+
+
+
+
+    },
     }
-
-
 </script>
 
 <style scoped>
