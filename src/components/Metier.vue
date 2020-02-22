@@ -18,18 +18,24 @@
                     <table class="table mt-3">
                         <thead>
                         <tr>
-                            <th>prenom</th>
-                            <th>entreprise</th>
+
+                            <th>Métiers</th>
 
                         </tr>
                         </thead>
                         <tbody>
 
-                        <tr v-for="student in students" :key="student.industryName">
-                            <td>{{ student.firstName }}</td>
-                            <td>{{ student.industryName }}</td>
+                        <tr v-for="student in students " :key="student.profileId">
+                            <td> <router-link :to="'/metier/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                                              exact-active-class="active">
+                                {{ student.headline }}
+                            </router-link>
+                            </td>
 
                         </tr>
+
+
+
                         </tbody>
                     </table>
                 </div>
@@ -44,7 +50,7 @@
 
 
     export default {
-        name: "Entreprise",
+        name: "Metier",
 
         components: {MenuBar, ScaleLoader},
         data () {

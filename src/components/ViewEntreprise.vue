@@ -11,7 +11,7 @@
 
                     <h6>
 
-                        <var id="var1"><i>{{student.industryName }}</i></var>=<var>b</var>
+                        <div id ="mon-texte"> <i>{{student.industryName }}</i></div>
                     </h6>
 
 
@@ -27,7 +27,7 @@
 
                         <tr v-for="student in students" :key="student.industryName">
 
-                            <div v-if="student.industryName =='Banking'">
+                            <div v-if="student.industryName == 'Banking'">
 
                                 <td>{{ student.firstName }}</td>
 
@@ -74,10 +74,8 @@
 
                     return this.resources.content
 
+            },
 
-
-
-            }
         },
     async mounted () {
 

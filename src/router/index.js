@@ -5,6 +5,8 @@ import ListStudents from '@/components/ListStudents'
 import ListEntreprises from '@/components/ListEntreprises'
 import ViewStudent from '@/components/ViewStudent'
 import ViewEntreprise from "../components/ViewEntreprise";
+import ViewMetier from "../components/ViewMetier";
+import ListMetiers from "../components/ListMetiers";
 
 
 
@@ -38,6 +40,15 @@ Vue.use(Router)
       path: '/entreprise/:id',
       name: 'ViewEntreprise',
       component: ViewEntreprise
+    }, {
+      path: '/metiers',
+      name: 'ListMetiers',
+      component: ListMetiers
+    },
+    {
+      path: '/metier/:id',
+      name: 'ViewMetier',
+      component: ViewMetier
     }
   ]
 })

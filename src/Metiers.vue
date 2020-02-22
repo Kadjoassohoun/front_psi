@@ -12,44 +12,47 @@
                 <div class="card-block">
                     <div class="col-12 pt-3">
                         <h4>Liste des étudiants</h4>
-                        </div>
-
-
-
                     </div>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Entreprise</th>
-                                <th>Localisation</th>
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="student in students " :key="student.profileId">
-                                <td> <router-link :to="'/entreprise/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                                                  exact-active-class="active">
-                                    {{ student.industryName }}
-                                </router-link>
-                                </td>
-                                <td>{{ student.locationName }} </td>
-                            </tr>
-                            </tbody>
-                        </table>
 
-                        <nav aria-label="Page navigation" v-if="!(name&&searchByNameCompagny.length)">
-                            <ul class="pagination">
-                                <li class="page-item" :class="{'active': resources.pageable.pageNumber === page}"
-                                    v-for="page in resources.totalPages" :key="page">
-                                    <span class="page-link" v-on:click="toPage(page)">{{ page }}</span>
-                                </li>
-                            </ul>
-                        </nav>
 
-                    </div>
                 </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+
+                        <th>Métiers</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr v-for="student in students " :key="student.profileId">
+                        <td> <router-link :to="'/metier/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                                          exact-active-class="active">
+                            {{ student.headline }}
+                        </router-link>
+                        </td>
+
+                    </tr>
+
+
+
+                    </tbody>
+                </table>
+
+                <nav aria-label="Page navigation" v-if="!(name&&searchByNameCompagny.length)">
+                    <ul class="pagination">
+                        <li class="page-item" :class="{'active': resources.pageable.pageNumber === page}"
+                            v-for="page in resources.totalPages" :key="page">
+                            <span class="page-link" v-on:click="toPage(page)">{{ page }}</span>
+                        </li>
+                    </ul>
+                </nav>
+
             </div>
+        </div>
+    </div>
 
 </template>
 
@@ -61,7 +64,7 @@
     require('./../api')
 
     export default {
-        name: 'entreprises',
+        name: 'metiers',
         components: {MenuBar},
         watch: {
             resources: function () {
@@ -73,7 +76,7 @@
 
         methods: {
             toPage: function (pageNum = 0) {
-                this.getGroupByIndustryName(25, pageNum)
+                this.getGroupByIndustryName(2000, pageNum)
             },
             handleSearchByNameCompagny: function () {
                 this.getSearchByNameCompagny(this.name)
@@ -99,15 +102,15 @@
 
             },
 
-            },
-            mounted() {
+        },
+        mounted() {
 
-                /*
-         * On appelle l'API /profiles
-         */
-                this.getGroupByIndustryName(20000)
-            }
+            /*
+     * On appelle l'API /profiles
+     */
+            this.getGroupByIndustryName(20000)
         }
+    }
 
 
 

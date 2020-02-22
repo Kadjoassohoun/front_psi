@@ -4,37 +4,37 @@
 
         <div class="col d-flex flex-wrap">
             <div class="col-12 my-2">
-                <a :href="api.base + 'expertises/export'" v-if="!(name&&searchByName.length)"
+                <a :href="api.base + 'profiles/export'"
                    class="btn btn-success float-right">Exporter</a>
             </div>
 
             <div class="card card-inverse col-12">
                 <div class="card-block">
                     <div class="col-12 pt-3">
-                        <h4>Liste des étudiants</h4>
-                        </div>
+                        <h4>Liste des Métiers</h4>
 
 
-
-                    </div>
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Entreprise</th>
-                                <th>Localisation</th>
+
+                                <th>Métiers</th>
 
                             </tr>
                             </thead>
                             <tbody>
+
                             <tr v-for="student in students " :key="student.profileId">
-                                <td> <router-link :to="'/entreprise/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                                <td> <router-link :to="'/metier/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                                   exact-active-class="active">
-                                    {{ student.industryName }}
+                                    {{ student.headline }}
                                 </router-link>
                                 </td>
-                                <td>{{ student.locationName }} </td>
+
                             </tr>
+
+
+
                             </tbody>
                         </table>
 
@@ -50,18 +50,24 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
 </template>
 
+
+
 <script>
     import MenuBar from './MenuBar'
-    import _ from 'lodash';
+    import _ from 'lodash'
+    import * as am4core from "@amcharts/amcharts4/core";
+    import * as am4charts from "@amcharts/amcharts4/charts";
 
     // let _ = require('lodash')
     require('./../api')
 
     export default {
-        name: 'entreprises',
+        name: 'Metiers',
         components: {MenuBar},
         watch: {
             resources: function () {
@@ -70,47 +76,34 @@
                  */
             }
         },
-
         methods: {
             toPage: function (pageNum = 0) {
-                this.getGroupByIndustryName(25, pageNum)
+                this.getProfiles(25, pageNum)
             },
             handleSearchByNameCompagny: function () {
                 this.getSearchByNameCompagny(this.name)
             },
-
-        },
-        data() {
-            return {
-                name: null,
-                resources: {},
-                searchByNameCompagny: {},
-
+            data () {
+                return {
+                    name: null,
+                    fname: null,
+                    resources: {}
+                }
             }
         },
         computed: {
             students: function () {
-                if (this.name && this.searchByNameCompagny.length) {
-                    return this.searchByNameCompagny
 
-                }
-                return  _.uniqBy(this.resources.content,'industryName')
-
-
+                return this.resources.content
             },
-
-            },
-            mounted() {
-
+            mounted () {
                 /*
-         * On appelle l'API /profiles
-         */
-                this.getGroupByIndustryName(20000)
+                 * On appelle l'API /profiles
+                 */
+                this.getProfiles(25)
             }
-        }
-
-
-
+        },
+    }
 </script>
 
 <style scoped>
