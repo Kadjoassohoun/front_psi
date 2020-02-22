@@ -8,7 +8,11 @@
            class="btn btn-success">Exporter</a>
       </div>
 
-      <scale-loader :loading="loading" color="#dc3545"></scale-loader>
+      <div class="col-12 text-left px-lg-0">
+        <h1 class="text-red-1 text-uppercase font-weight-bold text-head">Etudiants
+          <scale-loader :loaded="loading" v-if="loading" color="#dc3545" class="d-inline"></scale-loader>
+        </h1>
+      </div>
 
       <div class="card card-inverse col-12">
         <div class="card-block">
@@ -40,20 +44,20 @@
               <tr v-for="student in students" :key="student.profileId">
                 <td>
                   <a href="#">
-                    <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                                 exact-active-class="active">
+                    <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer" exact-active-class="active">
                       <font-awesome-icon :icon="['fas', 'address-card']"></font-awesome-icon>
                     </router-link>
                   </a>
                 </td>
                 <td>
                   <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                               exact-active-class="active">{{ student.firstName }}</router-link></td>
+                               exact-active-class="active">{{ student.firstName }}
+                  </router-link>
+                </td>
 
-                <td>       <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                                        exact-active-class="active">
-                  {{ student.lastName }}</router-link></td>
-
+                <td>
+                  <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                               exact-active-class="active">{{ student.lastName }}</router-link></td>
                 <td>{{ student.locationName }}</td>
                 <td>{{ student.headline }}</td>
               </tr>

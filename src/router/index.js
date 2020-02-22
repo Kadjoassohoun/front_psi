@@ -7,9 +7,7 @@ import ViewStudent from '@/components/ViewStudent'
 import ViewEntreprise from "../components/ViewEntreprise";
 
 
-
 Vue.use(Router)
-
 
  const router = new Router({
   routes: [
@@ -23,16 +21,15 @@ Vue.use(Router)
       name: 'ListStudents',
       component: ListStudents
     },
-
-    {
-      path: '/entreprises',
-      name: 'ListEntreprises',
-      component: ListEntreprises
-    },
     {
       path: '/etudiant/:id',
       name: 'ViewStudent',
       component: ViewStudent
+    },
+    {
+      path: '/entreprises',
+      name: 'ListEntreprises',
+      component: ListEntreprises
     },
     {
       path: '/entreprise/:id',

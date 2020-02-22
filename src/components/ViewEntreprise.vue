@@ -10,33 +10,25 @@
                     <font-awesome-icon icon="user" size="3x" class="mb-2"></font-awesome-icon>
 
                     <h6>
-
-                        <var id="var1"><i>{{student.industryName }}</i></var>=<var>b</var>
+                        <var id="var1"><i>{{student.industryName }}</i></var>
                     </h6>
-
 
                     <table class="table mt-3">
                         <thead>
                         <tr>
-                            <th>Nom Prenom</th>
-
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Headline</th>
                         </tr>
                         </thead>
                         <tbody>
-
-
                         <tr v-for="student in students" :key="student.industryName">
-
                             <div v-if="student.industryName =='Banking'">
-
                                 <td>{{ student.firstName }}</td>
-
-
                                 <td>{{ student.lastName }}</td>
+                                <td>{{student.headline}}</td>
                             </div>
-
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -47,57 +39,54 @@
 
 <script>
 
-
     import MenuBar from "./MenuBar";
     import ScaleLoader from "vue-spinner/src/ScaleLoader";
 
-
     export default {
         name: "ViewEntreprise",
+        components: {MenuBar, ScaleLoader},
         created(){
             this.vars = {
                 svg:null
             }
         },
-
-    components: {MenuBar, ScaleLoader},
-    data () {
-        return {
-            loading: true,
-            student: {},
-            expertises: {}
-        }
-    },
+        data () {
+            return {
+                loading: true,
+                student: {},
+                expertises: {}
+                }
+            },
         computed: {
-            students: function ()
-            {
-
-                    return this.resources.content
-
-
-
-
-            }
+            students: function (){
+                return this.resources.content
+                }
+            },
+        async mounted () {
+            let studentID = this.$route.params.id
+            this.student = (await this.getProfile(studentID)).data
+            this.resources = (await this.getProfiles(2000)).data
+            this.loading = false
         },
-    async mounted () {
-
-
-        let studentID = this.$route.params.id
-        this.student = (await this.getProfile(studentID)).data
-
-
-        this.resources = (await this.getProfiles(2000)).data
-
-        this.loading = false
-
-
-
-
-
-    },
     }
 </script>
 
-<style scoped>
+<style>
+    h1, h2 {
+        font-weight: normal;
+    }
 
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    a {
+        color: #35495E;
+    }
 </style>
