@@ -27,7 +27,7 @@
               <td>{{ expertise.name }}</td>
               <td>{{ student.location }}</td>
 >>>>>>> top-entreprises
-              <td>{{ expertise.startYear}} <span v-if="expertise.endYear">- {{ expertise.endYear }}</span></td>
+              <td>{{ expertise.startYear}} </td>
             </tr>
             </tbody>
           </table>

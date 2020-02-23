@@ -18,24 +18,23 @@
                     <table class="table mt-3">
                         <thead>
                         <tr>
-                            <th>Nom Prenom</th>
-
+                         <th>Prenom</th>
+                              <th>Nom </th>
+                                <th>Poste</th>
                         </tr>
                         </thead>
                         <tbody>
 
 
-                        <tr v-for="student in students" :key="student.industryName">
+                        <tr v-for="student2 in students" :key="student2.industryName">
 
-                            <div v-if="student.industryName == 'Banking'">
-
-                                <td>{{ student.firstName }}</td>
-
-
-                                <td>{{ student.lastName }}</td>
-                            </div>
+                            <td v-if="student2.industryName ==student.industryName">{{ student2.firstName }}</td>
+                            <td v-if="student2.industryName ==student.industryName">{{ student2.lastName }}</td>
+                            <td v-if="student2.industryName ==student.industryName">{{student2.headline}}</td>
 
                         </tr>
+
+
 
                         </tbody>
                     </table>

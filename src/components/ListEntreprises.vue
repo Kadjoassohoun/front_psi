@@ -14,14 +14,14 @@
             <div class="card card-inverse col-12">
                 <div class="card-block">
                     <div class="col-12 pt-3">
-                        <h4>Liste des entreprises</h4>
+                        <h4>Secteurs</h4>
 
 
                         <table class="table table-responsive">
                             <thead>
                             <tr>
 
-                                <th>Entreprise</th>
+                                <th>Secteurs</th>
                                 <th>Localisation</th>
                             </tr>
                             </thead>
@@ -31,8 +31,7 @@
                                 <td> <router-link :to="'/entreprise/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                                   exact-active-class="active">
                                     {{ student.industryName }}
-                                </router-link>
-                                </td>
+                                </router-link></td>
                                 <td>{{ student.locationName }} </td>
                             </tr>
 
@@ -86,7 +85,7 @@
         methods: {
             toPage: async function (pageNum = 0) {
                 this.loading = true
-                this.resources = (await this.getProfiles(25, pageNum)).data
+                this.resources = (await this.getProfiles(20000, pageNum)).data
                 this.loading = false
             },
             handleSearchByNameCompagny: async function () {
@@ -98,10 +97,7 @@
         computed: {
             students: function ()
             {
-                if (this.name && this.searchByNameCompagny.length)
-                {
-                    return this.searchByNameCompagny
-                }
+
 
                 return _.uniqBy(this.resources.content,'industryName')
 

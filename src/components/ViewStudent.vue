@@ -31,7 +31,7 @@
             <tr v-for="expertise in expertises" :key="expertise.skillId">
               <td>{{ expertise.title }}</td>
               <td>{{ expertise.companyName }}</td>
-              <td>{{ expertise.startYear}} <span v-if="expertise.endYear"> - {{ expertise.endYear }}</span></td>
+              <td>{{ expertise.startYear}} </td>
             </tr>
             </tbody>
           </table>

@@ -10,26 +10,28 @@
                     <font-awesome-icon icon="user" size="3x" class="mb-2"></font-awesome-icon>
 
 
+                    <h6>
 
+                        <div id ="mon-texte"> <i>{{student.headline }}</i></div>
+                    </h6>
                     <table class="table mt-3">
                         <thead>
                         <tr>
                             <th> Prenom</th>
                             <th>Nom </th>
-                            <th>Entreprise</th>
+                            <th>Secteur</th>
                         </tr>
                         </thead>
                         <tbody>
 
+                        <tr v-for="student2 in students" :key="student2.headline">
 
-                        <tr v-for="student in students" :key="student.industryName">
-
-
-                                <td>{{ student.firstName }}</td>
-                                <td>{{ student.lastName }}</td>
-                                <td>{{ student.industryName }}</td>
+                            <td v-if="student2.headline ==student.headline">{{ student2.firstName }}</td>
+                            <td v-if="student2.headline ==student.headline">{{ student2.lastName }}</td>
+                            <td v-if="student2.headline ==student.headline">{{student2.industryName}}</td>
 
                         </tr>
+
 
                         </tbody>
                     </table>

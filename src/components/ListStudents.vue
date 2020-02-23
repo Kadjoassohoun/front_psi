@@ -28,7 +28,7 @@
             <table class="table table-responsive">
               <thead>
               <tr>
-                <th>#</th>
+
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Localisation</th>
@@ -38,14 +38,7 @@
 
               <tbody>
               <tr v-for="student in students" :key="student.profileId">
-                <td>
-                  <a href="#">
-                    <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                                 exact-active-class="active">
-                      <font-awesome-icon :icon="['fas', 'address-card']"></font-awesome-icon>
-                    </router-link>
-                  </a>
-                </td>
+
                 <td>
                   <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                exact-active-class="active">{{ student.firstName }}</router-link></td>
