@@ -42,17 +42,7 @@
 
               <tbody>
               <tr v-for="student in students" :key="student.profileId">
-<<<<<<< HEAD
 
-=======
-                <td>
-                  <a href="#">
-                    <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer" exact-active-class="active">
-                      <font-awesome-icon :icon="['fas', 'address-card']"></font-awesome-icon>
-                    </router-link>
-                  </a>
-                </td>
->>>>>>> 14ef1ba6edfd166558fa1866d5732dc37db17b60
                 <td>
                   <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                exact-active-class="active">{{ student.firstName }}

@@ -47,9 +47,7 @@
                                 <th>#</th>
                                 <th>Entreprise</th>
                                 <th>Nom</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                            </tbody>
                             <tr v-for="company in students" :key="company.profileId">
                                 <td>
                                     <a href="#">
@@ -64,7 +62,7 @@
                                                  exact-active-class="active">{{ company.industryName }}</router-link></td>
                                 <td>{{ company.locationName }}</td>
                             </tr>
-                            </tbody>
+
                         </table>
                         <nav aria-label="Page navigation" v-if="!(name&&searchByName.length)">
                             <ul class="pagination flex-wrap justify-content-center">
@@ -115,15 +113,12 @@
         computed: {
             students: function ()
             {
-<<<<<<< HEAD
-
-
-=======
                 if (this.name && this.searchByNameCompagny.length)
                 {
                     return this.searchByNameCompagny
                 }
->>>>>>> 14ef1ba6edfd166558fa1866d5732dc37db17b60
+
+
                 return _.uniqBy(this.resources.content,'industryName')
             }
         },
