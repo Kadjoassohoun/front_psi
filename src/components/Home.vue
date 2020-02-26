@@ -6,7 +6,7 @@
 
       <div class="col-12 text-left px-lg-0">
         <h1 class="text-red-1 text-uppercase font-weight-bold text-head">Statistiques
-          <scale-loader :loading="loading" v-if="loading" color="#dc3545" class="d-inline"></scale-loader>
+          <scale-loader :loaded="loading" v-if="loading" color="#dc3545" class="d-inline"></scale-loader>
         </h1>
       </div>
       <div class="col-12 d-lg-flex flex-nowrap pl-lg-0">
@@ -84,7 +84,7 @@
   require('./../assets/vendor/wordLow')
 
   export default {
-    name: 'hello',
+    name: 'Home',
     components: {MenuBar, LMap, LTileLayer, LTooltip, LCircle, ScaleLoader},
     data () {
       return {
@@ -187,6 +187,7 @@
       }
     },
     async mounted () {
+
       /**
        * ---------------------------------------
        * This charts was created using amCharts 4.

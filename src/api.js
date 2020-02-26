@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 
+
 Vue.mixin({
   data () {
     return {
@@ -18,6 +19,7 @@ Vue.mixin({
     getProfiles: function (size = 500, page = 0) {
       return this.getHttp('profiles?size=' + (size) + '&page=' + (page))
     },
+
     getProfile: function (id) {
       return this.getHttp('profiles/' + id)
     },
@@ -44,6 +46,12 @@ Vue.mixin({
     },
     getSearchByFirstName: function (name) {
       return this.getHttp('profiles/by-firstname/' + name)
-    }
+    },
+
+    getSearchByNameCompagny: function (name) {
+      return this.getHttp('profiles/groupByIndustry/' + name)
+    },
+
   }
 })
+

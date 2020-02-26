@@ -27,12 +27,15 @@
               <th>Année</th>
             </tr>
             </thead>
+
             <tbody>
             <tr v-for="expertise in expertises" :key="expertise.skillId">
-              <td>{{ expertise.title }}</td>
-              <td>{{ expertise.companyName }}</td>
-              <td>{{ expertise.startYear}} <span v-if="expertise.endYear">- {{ expertise.endYear }}</span></td>
+              <td v-if="expertise.title.includes('Alternance') == false && expertise.title.includes('stage') == false && expertise.title.includes('Stagiaire') == false && expertise.title.includes('Apprenti') == false && expertise.title.includes('Apprentie') == false && expertise.title.includes('apprentissage') == false && expertise.title.includes('apprentie') == false && expertise.title.includes('apprenti') == false && expertise.title.includes('Stage') == false && expertise.title.includes('alternant') == false  && expertise.title.includes('alternante') == false  && expertise.title.includes('alternance') == false && expertise.title.includes('stagiaire') == false && expertise.title.includes('internship') == false && expertise.title.includes('intern') == false "  >{{ expertise.title }}</td>
+              <td  v-if="expertise.title.includes('Alternance') == false && expertise.title.includes('stage') == false && expertise.title.includes('Stagiaire') == false && expertise.title.includes('Apprenti') == false && expertise.title.includes('Apprentie') == false && expertise.title.includes('apprentissage') == false && expertise.title.includes('apprentie') == false && expertise.title.includes('apprenti') == false && expertise.title.includes('Stage') == false && expertise.title.includes('alternant') == false  && expertise.title.includes('alternante') == false  && expertise.title.includes('alternance') == false && expertise.title.includes('stagiaire') == false && expertise.title.includes('internship') == false && expertise.title.includes('intern') == false "  >{{ expertise.companyName }}</td>
+              <td  v-if="expertise.title.includes('Alternance') == false && expertise.title.includes('stage') == false && expertise.title.includes('Stagiaire') == false && expertise.title.includes('Apprenti') == false && expertise.title.includes('Apprentie') == false && expertise.title.includes('apprentissage') == false && expertise.title.includes('apprentie') == false && expertise.title.includes('apprenti') == false && expertise.title.includes('Stage') == false && expertise.title.includes('alternant') == false  && expertise.title.includes('alternante') == false  && expertise.title.includes('alternance') == false && expertise.title.includes('stagiaire') == false && expertise.title.includes('internship') == false && expertise.title.includes('intern') == false " >{{ expertise.startYear}} <span v-if="expertise.endYear"> - {{ expertise.endYear }}</span></td>
             </tr>
+            <!-- dans le tableau on vérifie si l'intitutlé contient qq chose qui ressemble à stage/stagiaire/alternant/alternance
+              si oui, on saute l'affichage de chaque celulle concernée, poure ne pas afficher la ligne -->
             </tbody>
           </table>
         </div>
@@ -55,11 +58,20 @@
         expertises: {}
       }
     },
+    computed: {
+      stage: function (intitule){
+
+        //console.log(typeof String(intitule))+ "<br>";
+//        var testos = "testttt";
+          return String(intitule).includes("stage");
+          
+      }
+
+      },
     async mounted () {
       let studentID = this.$route.params.id
       this.student = (await this.getProfile(studentID)).data
       this.expertises = (await this.getProfileExpertise(studentID)).data
-
       this.loading = false
     }
   }
