@@ -13,7 +13,6 @@
           <scale-loader :loaded="loading" v-if="loading" color="#dc3545" class="d-inline"></scale-loader>
         </h1>
       </div>
-
       <div class="card card-inverse col-12">
         <div class="card-block">
           <div class="col-12 pt-3">
@@ -32,7 +31,6 @@
             <table class="table table-responsive">
               <thead>
               <tr>
-
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Localisation</th>

@@ -6,36 +6,25 @@
             <div class="card card-inverse col-12">
                 <div class="card-block pt-4">
                     <scale-loader :loading="loading" color="#dc3545" class="float-left"></scale-loader>
-
                     <font-awesome-icon icon="user" size="3x" class="mb-2"></font-awesome-icon>
-
                     <h6>
                         <font-awesome-icon icon="briefcase"></font-awesome-icon>
                         {{ student.headline }} à <i>{{ student.industryName }}</i>
                     </h6>
-
-
                     <table class="table mt-3">
                         <thead>
                         <tr>
-
                             <th>Métiers</th>
-
                         </tr>
                         </thead>
                         <tbody>
-
                         <tr v-for="student in students " :key="student.profileId">
                             <td> <router-link :to="'/metier/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                               exact-active-class="active">
                                 {{ student.headline }}
                             </router-link>
                             </td>
-
                         </tr>
-
-
-
                         </tbody>
                     </table>
                 </div>
@@ -47,7 +36,6 @@
 <script>
     import MenuBar from "./MenuBar";
     import ScaleLoader from "vue-spinner/src/ScaleLoader";
-
 
     export default {
         name: "Metier",
@@ -67,7 +55,7 @@
             }
         },
         async mounted () {
-            this.resources = (await this.getProfiles(2000)).data
+            this.resources = (await this.getProfiles(25)).data
 
             this.loading = false
         }

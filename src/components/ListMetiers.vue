@@ -8,36 +8,25 @@
                 <a :href="api.base + 'profiles/export'"
                    class="btn btn-success">Exporter</a>
             </div>
-
             <scale-loader :loading="loading" color="#dc3545"></scale-loader>
-
             <div class="card card-inverse col-12">
                 <div class="card-block">
                     <div class="col-12 pt-3">
                         <h4>Liste des métiers</h4>
-
-
                         <table class="table table-responsive">
                             <thead>
                             <tr>
-
                                 <th>Métiers</th>
-
                             </tr>
                             </thead>
                             <tbody>
-
                             <tr v-for="student in students " :key="student.profileId">
                                 <td> <router-link :to="'/metier/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                                   exact-active-class="active">
                                    <p id =student.headline >{{ student.headline }}</p>
                                 </router-link>
                                 </td>
-
                             </tr>
-
-
-
                             </tbody>
                         </table>
 
@@ -50,7 +39,6 @@
                                 </li>
                             </ul>
                         </nav>
-
                     </div>
                 </div>
             </div>
@@ -63,42 +51,31 @@
     import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
     import _ from "lodash";
 
-
     require('./../api')
 
     export default {
         name: 'ListMetiers',
         components: {MenuBar, ScaleLoader},
-
-
         data () {
             return {
                 cpt: ['0','1'],
                 loading: true,
                 name: null,
-
-
                 resources: {},
                 searchByNameCompagny: {},
-
             }
         },
-
         methods: {
             toPage: async function (pageNum = 0) {
                 this.loading = true
-                this.resources = (await this.getProfiles(2000, pageNum)).data
+                this.resources = (await this.getProfiles(30, pageNum)).data
                 this.loading = false
             },
-
         },
         computed: {
             students: function ()
             {
-
                 return _.uniqBy(this.resources.content,'headline')
-
-
             }
         }
         ,
@@ -106,12 +83,10 @@
             /*
              * On appelle l'API /profiles
              */
-
             this.resources = (await this.getProfiles(2000)).data
-
             this.loading = false
-
-        },}
+        },
+    }
 
 </script>
 

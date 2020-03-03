@@ -25,43 +25,27 @@
 
                         <table class="table table-responsive">
                             <thead>
-                            <tr>
-
-
-                                <th>Secteurs</th>
-                                <th>Localisation</th>
-                            </tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Entreprise</th>
+                                    <th>Nom</th>
+                                </tr>
                             </thead>
                             <tbody>
-
-                            <tr v-for="student in students " :key="student.profileId">
-                                <td> <router-link :to="'/entreprise/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                                                  exact-active-class="active">
-                                    {{ student.industryName }}
-                                </router-link></td>
-                                <td>{{ student.locationName }} </td>
-                            </tr>
-
-
-
-                                <th>#</th>
-                                <th>Entreprise</th>
-                                <th>Nom</th>
+                                <tr v-for="company in students" :key="company.profileId">
+                                    <td>
+                                        <a href="#">
+                                            <router-link :to="'/entreprise/'+company.profileId" tag="li" class="list-group-item cursor-pointer" exact-active-class="active">
+                                                <font-awesome-icon :icon="['fas', 'address-card']"></font-awesome-icon>
+                                            </router-link>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <router-link :to="'/entreprise/'+company.profileId" tag="li" class="list-group-item cursor-pointer"
+                                                     exact-active-class="active">{{ company.industryName }}</router-link></td>
+                                    <td>{{ company.locationName }}</td>
+                                </tr>
                             </tbody>
-                            <tr v-for="company in students" :key="company.profileId">
-                                <td>
-                                    <a href="#">
-                                        <router-link :to="'/entreprise/'+company.profileId" tag="li" class="list-group-item cursor-pointer" exact-active-class="active">
-                                            <font-awesome-icon :icon="['fas', 'address-card']"></font-awesome-icon>
-                                        </router-link>
-                                    </a>
-                                </td>
-
-                                <td>
-                                    <router-link :to="'/entreprise/'+company.profileId" tag="li" class="list-group-item cursor-pointer"
-                                                 exact-active-class="active">{{ company.industryName }}</router-link></td>
-                                <td>{{ company.locationName }}</td>
-                            </tr>
 
                         </table>
                         <nav aria-label="Page navigation" v-if="!(name&&searchByName.length)">

@@ -7,34 +7,24 @@
                 <a :href="api.base + 'profiles/export'"
                    class="btn btn-success float-right">Exporter</a>
             </div>
-
             <div class="card card-inverse col-12">
                 <div class="card-block">
                     <div class="col-12 pt-3">
                         <h4>Liste des Métiers</h4>
-
-
                         <table class="table">
                             <thead>
                             <tr>
-
                                 <th>Métiers</th>
-
                             </tr>
                             </thead>
                             <tbody>
-
                             <tr v-for="student in students " :key="student.profileId">
                                 <td> <router-link :to="'/metier/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
                                                   exact-active-class="active">
                                     {{ student.headline }}
                                 </router-link>
                                 </td>
-
                             </tr>
-
-
-
                             </tbody>
                         </table>
 
@@ -46,7 +36,6 @@
                                 </li>
                             </ul>
                         </nav>
-
                     </div>
                 </div>
             </div>
@@ -59,11 +48,6 @@
 
 <script>
     import MenuBar from './MenuBar'
-    import _ from 'lodash'
-    import * as am4core from "@amcharts/amcharts4/core";
-    import * as am4charts from "@amcharts/amcharts4/charts";
-
-    // let _ = require('lodash')
     require('./../api')
 
     export default {
@@ -72,7 +56,7 @@
         watch: {
             resources: function () {
                 /**
-                 * Apres le contacte de l'API httpResponse est modifie ont l'injecte dans le variable students
+                 * Apres le contact de l'API httpResponse est modifie ont l'injecte dans le variable students
                  */
             }
         },
