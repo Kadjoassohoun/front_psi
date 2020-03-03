@@ -8,11 +8,8 @@
            class="btn btn-success">Exporter</a>
       </div>
 
-      <div class="col-12 text-left px-lg-0">
-        <h1 class="text-red-1 text-uppercase font-weight-bold text-head">Etudiants
-          <scale-loader :loaded="loading" v-if="loading" color="#dc3545" class="d-inline"></scale-loader>
-        </h1>
-      </div>
+      <scale-loader :loading="loading" color="#dc3545"></scale-loader>
+
       <div class="card card-inverse col-12">
         <div class="card-block">
           <div class="col-12 pt-3">
@@ -31,31 +28,34 @@
             <table class="table table-responsive">
               <thead>
               <tr>
+                <th>#</th>
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Localisation</th>
                 <th>Poste actuel</th>
               </tr>
               </thead>
-
               <tbody>
               <tr v-for="student in students" :key="student.profileId">
-
                 <td>
-                  <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                               exact-active-class="active">{{ student.firstName }}
-                  </router-link>
+                  <a href="#">
+                    <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
+                                 exact-active-class="active">
+                      <font-awesome-icon :icon="['fas', 'address-card']"></font-awesome-icon>
+                    </router-link>
+                  </a>
                 </td>
-
-                <td>
-                  <router-link :to="'/etudiant/'+student.profileId" tag="li" class="list-group-item cursor-pointer"
-                               exact-active-class="active">{{ student.lastName }}</router-link></td>
+                <td>{{ student.firstName }}</td>
+                <td>{{ student.lastName }}</td>
                 <td>{{ student.locationName }}</td>
                 <td>{{ student.headline }}</td>
               </tr>
+
+
               </tbody>
             </table>
-            <nav aria-label="Page navigation" v-if="!(name&&searchByName.length || searchByFirstName)">
+
+            <nav aria-label="Page navigation" v-if="!(name&&searchByName.length)">
               <ul class="pagination flex-wrap justify-content-center">
                 <li class="page-item my-2" :class="{'active': resources.pageable.pageNumber === page}"
                     v-for="page in resources.totalPages" :key="page">

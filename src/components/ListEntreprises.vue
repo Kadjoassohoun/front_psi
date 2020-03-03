@@ -12,17 +12,6 @@
                 <div class="card-block">
                     <div class="col-12 pt-3">
                         <h4>Secteurs</h4>
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label class="form-control"> Recherche par nom : </label>
-                                <input type="text" class="form-control">
-                                <div class="input-text p-2" style="cursor: pointer">
-                                    <font-awesome-icon icon="search"></font-awesome-icon>
-                                </div>
-                            </div>
-                        </div>
-
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
@@ -85,7 +74,7 @@
         methods: {
             toPage: async function (pageNum = 0) {
                 this.loading = true
-                this.resources = (await this.getProfiles(20000, pageNum)).data
+                this.resources = (await this.getProfiles(25, pageNum)).data
                 this.loading = false
             },
             handleSearchByNameCompagny: async function () {
@@ -101,7 +90,6 @@
                 {
                     return this.searchByNameCompagny
                 }
-
 
                 return _.uniqBy(this.resources.content,'industryName')
             }
