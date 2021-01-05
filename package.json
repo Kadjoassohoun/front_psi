@@ -11,7 +11,7 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "core-js": "^2.6.5",
     "cors": "^2.8.5",
     "i": "^0.3.6",
